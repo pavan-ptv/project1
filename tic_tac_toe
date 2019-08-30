@@ -1,0 +1,107 @@
+# tic_tac_toe
+#simply X O game
+# 1:displaying a board of 0 to 9 blocks
+# 2:the board gets an input from the player 1
+# 3:the input is put into its resprctive position which is specified by the user
+# 4: player 2 has to get an immediate turn after player 1 has done his input
+# 5: player 2 has to do the same process as player 1
+# 6: if any player gets three  X or O consecutively in horizontal or vertical or diagonal directions then the game ends and the respective player wins the game
+game = str(input("do you want to play return yes or no:"))
+board = ["_", "_", "_",
+         "_", "_", "_",
+         "_", "_", "_"]
+
+
+def g_table(test_board):
+    print(board[0]+"|"+board[1]+"|"+board[2])
+    print(board[3]+"|"+board[4]+"|"+board[5])
+    print(board[6]+"|"+board[7]+"|"+board[8])
+
+
+if game[0] == 'y':
+    players = int(input("number of players:"))
+    if players == 2:
+        for i in board:
+            i = 0
+            while i < len(board):
+                        # test_board=["_","_","_","_","_","_","_","_",]
+                play_turn = str(input("who are playing (BE HONEST!!!):"))
+                if play_turn == 'player1':
+                    g_table(board)
+                    inputs = str(input("select either X or O:"))
+                    # if inputs == 'X':
+                    #print("you selected X so player2 has to give O")
+                    locations = int(input(
+                        "where do you want to place your input in 0 to 8(including 8) should not place where the input is already taken:"))
+                    if locations < 9:
+                        i = 0
+                        while i < len(board):
+                            if i == locations:
+                                            #test_board=["_", "_", "_","_", "_", "_","_", "_", "_"]
+                                board.pop(i)
+                                board.insert(i, inputs)
+                                g_table(board)
+                                if ((board[0] == inputs and board[1] == inputs and board[2] == inputs) or
+                                    (board[3] == inputs and board[4] == inputs and board[5] == inputs) or
+                                    (board[6] == inputs and board[7] == inputs and board[8] == inputs) or
+                                    (board[0] == inputs and board[3] == inputs and board[6] == inputs) or
+                                    (board[1] == inputs and board[4] == inputs and board[7] == inputs) or
+                                    (board[2] == inputs and board[5] == inputs and board[8] == inputs) or
+                                    (board[0] == inputs and board[4] == inputs and board[8] == inputs) or
+                                        (board[2] == inputs and board[4] == inputs and board[6] == inputs)):
+                                    print("congrats player1 you won the game")
+                                    exit()
+                                # if (board[0] == board[1] == board[2]):
+                                    #print("congrats player1")
+                                    # exit()
+                                # if win_check(board,inputs):
+                                    #print("congrats player1 you are the winner")
+                                play_turn = 'player2'
+                                #player = 'player2'
+                                # my_func2(player)
+                            i = i+1
+                        #play_turn = 'player2'
+                        #play_turn = str(input("who are playing (BE HONEST!!!):"))
+                if play_turn == 'player2':
+                    i = 0
+                    while i < len(board)-8:
+                        print("welcome player2")
+                        g_table(board)
+                        inputs = str(
+                            input("enter the other value which is not choosen by player1:"))
+                        locations = int(input(
+                            "where do you want to place your input in 0 to 8(including 8) should not place where the input is already taken:"))
+                        if locations < 9:
+                            i = 0
+                            while i < len(board):
+                                if i == locations:
+                                    board.pop(i)
+                                    board.insert(i, inputs)
+                                    g_table(board)
+                                    if ((board[0] == inputs and board[1] == inputs and board[2] == inputs) or
+                                        (board[3] == inputs and board[4] == inputs and board[5] == inputs) or
+                                        (board[6] == inputs and board[7] == inputs and board[8] == inputs) or
+                                        (board[0] == inputs and board[3] == inputs and board[6] == inputs) or
+                                        (board[1] == inputs and board[4] == inputs and board[7] == inputs) or
+                                        (board[2] == inputs and board[5] == inputs and board[8] == inputs) or
+                                        (board[0] == inputs and board[4] == inputs and board[8] == inputs) or
+                                            (board[2] == inputs and board[4] == inputs and board[6] == inputs)):
+                                        print(
+                                            "congrats player2 you won the game")
+                                        exit()
+                                    # if (board[0] == board[1] == board[2]):
+                                        #print("congrats player2")
+                                    # if win_check(board,inputs):
+                                        #print("congrats player2 you are the winner")
+                                    play_turn = 'player1'
+                                    # my_func1(player)
+                                i = i+1
+                        i = i+1
+                    else:
+                        print("enter a proper entry")
+                    i = i+1
+            pass
+    else:
+        print("only two players can play the game")
+else:
+    print("If you change your mind you are always allowed")
